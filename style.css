@@ -84,7 +84,7 @@ body {
   aspect-ratio: 1 / 1.2;
 }
 
-/* Estrella en la punta */
+/* Estrella en la punta con pulso */
 .star {
   position: absolute;
   top: 2%;
@@ -96,6 +96,11 @@ body {
   clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 
                      50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
   box-shadow: 0 0 12px #f5c518, 0 0 24px #fffacd;
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { transform: translateX(-50%) scale(1); filter: drop-shadow(0 0 8px #fffacd); }
+  50% { transform: translateX(-50%) scale(1.1); filter: drop-shadow(0 0 16px #f5c518); }
 }
 
 /* Triángulos del árbol */
@@ -146,14 +151,14 @@ body {
   transition: background 300ms ease, box-shadow 300ms ease;
 }
 
-/* Animación de parpadeo */
+/* Animación de parpadeo alternado */
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.3; }
 }
-.light.on {
-  animation: blink 1s infinite;
-}
+.light.on.fast { animation: blink 0.8s infinite; }
+.light.on.slow { animation: blink 1.4s infinite; }
+
 .light.on:nth-child(1n) {
   background: var(--light-on-1);
   box-shadow: 0 0 6px var(--light-on-1), 0 0 16px var(--light-on-1);
@@ -167,7 +172,7 @@ body {
   box-shadow: 0 0 6px var(--light-on-3), 0 0 16px var(--light-on-3);
 }
 
-/* Mensaje final */
+/* Mensaje final con glow */
 .message {
   text-align: center;
   font-size: clamp(1rem, 3.8vw, 1.3rem);
@@ -177,13 +182,18 @@ body {
   transform: translateY(8px);
   transition: opacity 600ms ease, transform 450ms ease;
   color: #e8fff7;
-  text-shadow:
-    0 0 2px rgba(0, 255, 136, 0.7),
-    0 0 6px rgba(0, 255, 136, 0.6),
-    0 0 12px rgba(0, 255, 136, 0.45),
-    0 0 20px rgba(0, 255, 136, 0.35);
 }
 .message.show {
-  opacity: 1;
-  transform: translateY(0);
+  animation: glowText 2s forwards;
+}
+@keyframes glowText {
+  0% { opacity: 0; text-shadow: none; }
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 2px rgba(0, 255, 136, 0.7),
+      0 0 6px rgba(0, 255, 136, 0.6),
+      0 0 12px rgba(0, 255, 136, 0.45),
+      0 0 20px rgba(0, 255, 136, 0.35);
+  }
 }

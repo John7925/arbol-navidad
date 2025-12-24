@@ -10,21 +10,26 @@ document.addEventListener('DOMContentLoaded', () => {
     if (running) return;
     running = true;
 
-    // Secuencia: encender una a una de abajo hacia arriba
     let i = 0;
     const interval = setInterval(() => {
       if (i < lights.length) {
+        // Alternar parpadeo rápido y lento
         lights[i].classList.add('on');
+        if (i % 2 === 0) {
+          lights[i].classList.add('fast');
+        } else {
+          lights[i].classList.add('slow');
+        }
         i++;
       } else {
         clearInterval(interval);
 
-        // Pausa antes de mostrar el mensaje final
+        // Mostrar mensaje final con glow
         setTimeout(() => {
           finalMessage.classList.add('show');
           finalMessage.setAttribute('aria-hidden', 'false');
           running = false;
-        }, 800);
+        }, 1000);
       }
     }, 250); // Velocidad de encendido (ms)
   });
