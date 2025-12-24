@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (running) return;
     running = true;
 
-    // Secuencia: encender una a una
+    // Secuencia: encender una a una de abajo hacia arriba
     let i = 0;
     const interval = setInterval(() => {
       if (i < lights.length) {
@@ -19,13 +19,13 @@ document.addEventListener('DOMContentLoaded', () => {
       } else {
         clearInterval(interval);
 
-        // Pequeña pausa antes del mensaje final
+        // Pausa antes de mostrar el mensaje final
         setTimeout(() => {
           finalMessage.classList.add('show');
           finalMessage.setAttribute('aria-hidden', 'false');
           running = false;
-        }, 600);
+        }, 800);
       }
-    }, 180); // Velocidad de encendido (ms)
+    }, 250); // Velocidad de encendido (ms)
   });
 });

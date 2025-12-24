@@ -9,7 +9,7 @@
   --light-on-1: #3ad1ff;    /* Azul claro */
   --light-on-2: #ff6bd6;    /* Rosa */
   --light-on-3: #ffd166;    /* Ámbar */
-  --accent: #00ff88;        /* Verde fosforescente sutil */
+  --accent: #00ff88;        /* Verde fosforescente */
   --text: #e9f3ff;          /* Texto claro */
   --roboto: 'Roboto', system-ui, -apple-system, Segoe UI, Arial, sans-serif;
 }
@@ -30,7 +30,6 @@ body {
   background: #0a0a0a;
   color: #aaa;
   font-size: 1rem;
-  letter-spacing: 0.2px;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -38,7 +37,6 @@ body {
   z-index: 9999;
 }
 
-/* Mostrar aviso en pantallas anchas (desktop) */
 @media (min-width: 768px) {
   .desktop-warning { display: flex; }
   .app { display: none; }
@@ -50,7 +48,6 @@ body {
   height: 100vh;
 }
 
-/* Botón centrado y accesible */
 .header {
   display: flex;
   align-items: center;
@@ -74,14 +71,12 @@ body {
   outline-offset: 4px;
 }
 
-/* Escena con proporción móvil */
 .scene {
   display: grid;
   place-items: center;
   padding: 0 1rem;
 }
 
-/* Árbol */
 .tree {
   position: relative;
   width: 82vw;
@@ -89,7 +84,21 @@ body {
   aspect-ratio: 1 / 1.2;
 }
 
-/* Triángulos del árbol (capas) */
+/* Estrella en la punta */
+.star {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  background: radial-gradient(circle at center, #fffacd, #f5c518);
+  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 
+                     50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+  box-shadow: 0 0 12px #f5c518, 0 0 24px #fffacd;
+}
+
+/* Triángulos del árbol */
 .triangle {
   position: absolute;
   left: 50%;
@@ -100,20 +109,10 @@ body {
   border-right: calc(35% + 2px) solid transparent;
   filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.65));
 }
-.t1 {
-  border-bottom: 20vh solid var(--tree-green);
-  top: 6%;
-}
-.t2 {
-  border-bottom: 22vh solid var(--tree-green-2);
-  top: 24%;
-}
-.t3 {
-  border-bottom: 24vh solid var(--tree-green);
-  top: 44%;
-}
+.t1 { border-bottom: 20vh solid var(--tree-green); top: 6%; }
+.t2 { border-bottom: 22vh solid var(--tree-green-2); top: 24%; }
+.t3 { border-bottom: 24vh solid var(--tree-green); top: 44%; }
 
-/* Tronco */
 .trunk {
   position: absolute;
   left: 50%;
@@ -143,12 +142,18 @@ body {
   height: 14px;
   border-radius: 50%;
   background: var(--light-off);
-  box-shadow: 0 0 0 rgba(0,0,0,0);
   opacity: 0.8;
   transition: background 300ms ease, box-shadow 300ms ease;
 }
 
-/* Estados de encendido con variados tonos */
+/* Animación de parpadeo */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.light.on {
+  animation: blink 1s infinite;
+}
 .light.on:nth-child(1n) {
   background: var(--light-on-1);
   box-shadow: 0 0 6px var(--light-on-1), 0 0 16px var(--light-on-1);
@@ -162,23 +167,21 @@ body {
   box-shadow: 0 0 6px var(--light-on-3), 0 0 16px var(--light-on-3);
 }
 
-/* Mensaje final con glow elegante y legible */
+/* Mensaje final */
 .message {
   text-align: center;
   font-size: clamp(1rem, 3.8vw, 1.3rem);
   font-weight: 600;
-  letter-spacing: 0.3px;
   margin: 1rem;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 600ms ease, transform 450ms ease;
-  color: #e8fff7; /* Color que sobresale en fondo negro */
+  color: #e8fff7;
   text-shadow:
     0 0 2px rgba(0, 255, 136, 0.7),
     0 0 6px rgba(0, 255, 136, 0.6),
     0 0 12px rgba(0, 255, 136, 0.45),
     0 0 20px rgba(0, 255, 136, 0.35);
-  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
 }
 .message.show {
   opacity: 1;
