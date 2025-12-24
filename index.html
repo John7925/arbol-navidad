@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Árbol de Navidad – Móvil</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="desktop-warning">
+    Ver en dispositivo móvil para la experiencia completa.
+  </div>
+
+  <main class="app">
+    <header class="header">
+      <button id="startButton" class="cta">Encender luces</button>
+    </header>
+
+    <section class="scene">
+      <!-- Árbol: triángulos + tronco -->
+      <div class="tree">
+        <div class="triangle t1"></div>
+        <div class="triangle t2"></div>
+        <div class="triangle t3"></div>
+        <div class="trunk"></div>
+
+        <!-- Esferas decorativas -->
+        <div class="bauble" style="left: 50%; top: 18%;"></div>
+        <div class="bauble" style="left: 35%; top: 32%;"></div>
+        <div class="bauble" style="left: 65%; top: 33%;"></div>
+        <div class="bauble" style="left: 42%; top: 48%;"></div>
+        <div class="bauble" style="left: 58%; top: 49%;"></div>
+        <div class="bauble" style="left: 30%; top: 63%;"></div>
+        <div class="bauble" style="left: 70%; top: 64%;"></div>
+
+        <!-- Luces en serie (se encienden secuencialmente) -->
+        <div class="light" data-order="1"  style="left: 30%; top: 24%;"></div>
+        <div class="light" data-order="2"  style="left: 40%; top: 27%;"></div>
+        <div class="light" data-order="3"  style="left: 50%; top: 29%;"></div>
+        <div class="light" data-order="4"  style="left: 60%; top: 27%;"></div>
+        <div class="light" data-order="5"  style="left: 70%; top: 24%;"></div>
+
+        <div class="light" data-order="6"  style="left: 28%; top: 40%;"></div>
+        <div class="light" data-order="7"  style="left: 38%; top: 42%;"></div>
+        <div class="light" data-order="8"  style="left: 50%; top: 44%;"></div>
+        <div class="light" data-order="9"  style="left: 62%; top: 42%;"></div>
+        <div class="light" data-order="10" style="left: 72%; top: 40%;"></div>
+
+        <div class="light" data-order="11" style="left: 26%; top: 56%;"></div>
+        <div class="light" data-order="12" style="left: 36%; top: 58%;"></div>
+        <div class="light" data-order="13" style="left: 50%; top: 60%;"></div>
+        <div class="light" data-order="14" style="left: 64%; top: 58%;"></div>
+        <div class="light" data-order="15" style="left: 74%; top: 56%;"></div>
+      </div>
+    </section>
+
+    <footer class="message" id="finalMessage" aria-hidden="true">
+      La Sub. de Control de Personal, les desea felices fiestas
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
